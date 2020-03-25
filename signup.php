@@ -1,12 +1,12 @@
 <?php
-
+session_start();
 include 'includes/dbcon.php';
 error_reporting(E_ALL ^ E_WARNING);
 $first_name = $_POST['first_name'];
 $last_name = $_POST['last_name'];
 $email = $_POST['email'];
 $mobile = $_POST['mobile'];
-
+$_SESSION['email'] = $email;
 $n=8; 
 function password_generation($n) { 
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'; 
@@ -71,7 +71,7 @@ $query2 = mysqli_query($conn, $sql2);
      if(!$mail->Send()) {
         echo "Mailer Error: " . $mail->ErrorInfo;
      } else {
-        header('Location: index.html');
+        header('Location: genre.php');
      }
 
 mysqli_close($conn);
